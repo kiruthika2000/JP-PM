@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiruthika Venkatesan — Portfolio Analytics & Advisor Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090c;--surface:#0e1015;--surface-2:#15171e;--surface-3:#1d2028;--border:#252830;--border-h:#353840;--text:#e8e6df;--text-muted:#7a7870;--navy:#4a7fff;--navy-glow:rgba(74,127,255,0.1);--navy-border:rgba(74,127,255,0.2);--navy-shadow:0 0 30px rgba(74,127,255,0.06);--gold:#d4a853;--gold-glow:rgba(212,168,83,0.08);--gold-border:rgba(212,168,83,0.2);--green:#34c77b;--green-glow:rgba(52,199,123,0.08);--red:#e05555;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:400;line-height:1.7;overflow-x:hidden}::selection{background:var(--navy);color:#fff}
+
+.noise{position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 48px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);background:rgba(8,9,12,0.88);border-bottom:1px solid var(--border)}
+nav .logo{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--gold);letter-spacing:-.5px}
+nav ul{list-style:none;display:flex;gap:28px}nav a{color:var(--text-muted);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}nav a:hover{color:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 48px 80px;max-width:1200px;margin:0 auto;position:relative}
+.hero-glow{position:absolute;top:-100px;right:-150px;width:600px;height:600px;background:radial-gradient(ellipse,rgba(74,127,255,0.05) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-50px;left:-100px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(212,168,83,0.04) 0%,transparent 65%);pointer-events:none}
+.hero-line{position:absolute;top:0;right:200px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--border),transparent);pointer-events:none;opacity:0.3}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--gold);background:var(--gold-glow);border:1px solid var(--gold-border);padding:5px 16px;border-radius:100px;width:fit-content;margin-bottom:28px}
+.hero-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,72px);font-weight:500;line-height:1.08;max-width:850px;margin-bottom:28px;letter-spacing:-.5px}
+.hero h1 em{font-style:italic;color:var(--gold);text-shadow:0 0 60px rgba(212,168,83,0.15)}
+.hero-sub{font-size:16px;color:var(--text-muted);max-width:580px;line-height:1.8;margin-bottom:56px;font-weight:300}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 40px rgba(0,0,0,0.3)}
+.st{background:var(--surface);padding:24px 16px;text-align:center;position:relative}
+.st:first-child{border-radius:14px 0 0 14px}.st:last-child{border-radius:0 14px 14px 0}
+.st::after{content:'';position:absolute;bottom:0;left:25%;right:25%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.12}
+.st .num{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--gold)}.st .lab{font-size:9px;color:var(--text-muted);margin-top:4px;letter-spacing:.8px;text-transform:uppercase}
+
+section{padding:100px 48px;max-width:1200px;margin:0 auto}
+.chip{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.stitle{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:500;line-height:1.15;margin-bottom:12px}
+.stitle em{color:var(--gold);font-style:italic}
+.sdesc{color:var(--text-muted);max-width:540px;font-size:14px;margin-bottom:56px;font-weight:300}
+
+/* CASES */
+.cases{display:flex;flex-direction:column;gap:14px}
+.case{background:var(--surface);border:1px solid var(--border);border-radius:18px;display:grid;grid-template-columns:270px 1fr;overflow:hidden;transition:border-color .4s,transform .3s,box-shadow .4s}
+.case:hover{border-color:var(--gold-border);transform:translateY(-2px);box-shadow:0 4px 30px rgba(212,168,83,0.06)}
+.cv{display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+.case:nth-child(1) .cv{background:linear-gradient(160deg,#0c1020,#101428)}
+.case:nth-child(2) .cv{background:linear-gradient(160deg,#14120c,#181610)}
+.case:nth-child(3) .cv{background:linear-gradient(160deg,#0c140e,#101812)}
+.case:nth-child(4) .cv{background:linear-gradient(160deg,#140c10,#181014)}
+.ctag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.ct-n{color:var(--navy);background:var(--navy-glow);border:1px solid var(--navy-border)}
+.ct-g{color:var(--gold);background:var(--gold-glow);border:1px solid var(--gold-border)}
+.ct-gr{color:var(--green);background:var(--green-glow);border:1px solid rgba(52,199,123,0.2)}
+.ct-r{color:var(--red);background:rgba(224,85,85,0.08);border:1px solid rgba(224,85,85,0.2)}
+.cb{padding:28px;display:flex;flex-direction:column;justify-content:center}
+.cb h3{font-family:var(--serif);font-size:19px;font-weight:500;margin-bottom:8px;line-height:1.3}
+.cb p{color:var(--text-muted);font-size:13px;line-height:1.75;margin-bottom:16px;font-weight:300}
+.mts{display:flex;gap:10px;flex-wrap:wrap}
+.mt{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+.mt strong{display:block;font-family:var(--mono);font-size:16px;font-weight:500}
+.mt.mn strong{color:var(--navy)}.mt.mg strong{color:var(--green)}.mt.mgl strong{color:var(--gold)}.mt.mr strong{color:var(--red)}
+.mt span{font-size:9px;color:var(--text-muted);letter-spacing:.3px}
+
+/* TICKER BAR */
+.ticker{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:var(--surface)}
+.ticker-inner{display:flex;gap:48px;animation:scroll 30s linear infinite;width:max-content}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{font-family:var(--mono);font-size:11px;color:var(--text-muted);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.ticker-item .val{color:var(--green);font-weight:500}
+.ticker-item .neg{color:var(--red);font-weight:500}
+.ticker-dot{width:3px;height:3px;border-radius:50%;background:var(--border)}
+
+/* EXPERIENCE */
+.exp-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.exp-bg>div{max-width:1200px;margin:0 auto;padding:100px 48px}
+.tl{position:relative;padding-left:36px}
+.tl::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--gold),var(--border))}
+.tli{position:relative;margin-bottom:32px}.tli:last-child{margin-bottom:0}
+.tli::before{content:'';position:absolute;left:-36px;top:6px;width:16px;height:16px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)}
+.tli.on::before{background:var(--gold);box-shadow:0 0 12px rgba(212,168,83,0.25)}
+.tlh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.tlt{font-size:14px;font-weight:600;letter-spacing:-.2px}.tlc{color:var(--gold);font-weight:500}
+.tld{font-family:var(--mono);font-size:10px;color:var(--text-muted)}
+.tlu{list-style:none;padding:0}.tlu li{color:var(--text-muted);font-size:12px;line-height:1.7;margin-bottom:5px;padding-left:16px;position:relative;font-weight:300}
+.tlu li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:0.3}
+
+/* APPROACH */
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ac{background:var(--surface-2);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.ac:hover{border-color:var(--gold-border);transform:translateY(-2px);box-shadow:0 4px 24px rgba(212,168,83,0.05)}
+.ac::before{content:attr(data-n);position:absolute;top:-10px;right:16px;font-family:var(--serif);font-size:80px;font-weight:700;color:var(--surface-3);line-height:1;pointer-events:none}
+.ac::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.ac:hover::after{opacity:0.25}
+.ac h3{font-size:14px;font-weight:600;margin-bottom:8px;position:relative;z-index:1}
+.ac p{font-size:12.5px;color:var(--text-muted);line-height:1.75;font-weight:300;position:relative;z-index:1}
+
+/* TECH */
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tp{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 12px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.tp:hover{border-color:var(--gold-border);transform:translateY(-1px)}
+.tp::after{content:'';position:absolute;top:0;left:30%;right:30%;height:1px;background:var(--gold);opacity:0;transition:opacity .3s}
+.tp:hover::after{opacity:0.3}
+.tp .tn{font-size:12px;font-weight:500;margin-bottom:2px}.tp .tc{font-family:var(--mono);font-size:8px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+
+/* EDU */
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ec{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:border-color .3s}
+.ec:hover{border-color:var(--gold-border)}
+.ec .es{font-family:var(--serif);font-size:17px;font-weight:500;margin-bottom:2px}.ec .ed{font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:300}
+.ec .em{display:flex;justify-content:space-between}.ec .gp{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green)}.ec .dt{font-family:var(--mono);font-size:10px;color:var(--text-muted)}
+.certs{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.cert{font-family:var(--mono);font-size:10px;color:var(--text-muted);background:var(--surface-2);border:1px solid var(--border);padding:5px 12px;border-radius:100px;transition:all .3s}
+.cert:hover{border-color:var(--gold-border);color:var(--gold)}
+.cert.primary{color:var(--gold);border-color:var(--gold-border);background:var(--gold-glow);font-weight:500}
+
+.contact{text-align:center;padding:120px 48px;position:relative}
+.contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(212,168,83,0.04) 0%,transparent 60%);pointer-events:none}
+.contact h2{font-family:var(--serif);font-size:clamp(28px,4.5vw,48px);font-weight:500;margin-bottom:10px;position:relative}
+.contact h2 em{color:var(--gold);font-style:italic;text-shadow:0 0 40px rgba(212,168,83,0.12)}
+.cls{display:flex;gap:14px;justify-content:center;margin-top:28px;position:relative}
+.cls a{color:var(--text);text-decoration:none;font-size:12px;font-weight:500;padding:12px 32px;border:1px solid var(--border);border-radius:100px;transition:all .3s}
+.cls a:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 20px rgba(212,168,83,0.08)}
+footer{text-align:center;padding:28px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text-muted)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.fade{animation:fadeUp .7s ease forwards}.d1{animation-delay:.1s;opacity:0}.d2{animation-delay:.15s;opacity:0}.d3{animation-delay:.2s;opacity:0}.d4{animation-delay:.3s;opacity:0}
+@media(max-width:768px){nav{padding:12px 20px}nav ul{display:none}section,.hero,.exp-bg>div{padding-left:20px;padding-right:20px}.case{grid-template-columns:1fr}.cv{height:160px}.ag,.tg{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(3,1fr)}.eg{grid-template-columns:1fr}.hero-glow,.hero-glow2,.hero-line{display:none}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<nav><div class="logo">K. Venkatesan</div><ul><li><a href="#work">Work</a></li><li><a href="#experience">Experience</a></li><li><a href="#approach">Approach</a></li><li><a href="#stack">Expertise</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+
+<div class="hero">
+<div class="hero-glow"></div><div class="hero-glow2"></div><div class="hero-line"></div>
+<div class="hero-badge fade d1"><div class="dot"></div> Asset Management &middot; Advisor Intelligence</div>
+<h1 class="fade d2">I turn <em>investment data</em> into tools that advisors actually trust.</h1>
+<p class="hero-sub fade d3">5+ years building compliant portfolio analytics platforms, advisor due diligence workflows, and retirement planning tools. FINRA regulatory background. SEC/FINRA compliance fluent. Morningstar data integrated.</p>
+<div class="stats fade d4">
+<div class="st"><div class="num">5+</div><div class="lab">Years FinServ PM</div></div>
+<div class="st"><div class="num">$7.8M</div><div class="lab">Impact driven</div></div>
+<div class="st"><div class="num">86%</div><div class="lab">Advisor adoption</div></div>
+<div class="st"><div class="num">93%</div><div class="lab">Audit pass rate</div></div>
+<div class="st"><div class="num">12</div><div class="lab">FS clients served</div></div>
+</div></div>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">
+<span class="ticker-item">Portfolio Construction <span class="val">+86% adoption</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Due Diligence <span class="val">18d → 5d</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Recon Errors <span class="val">12% → 1.5%</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Advisor NPS <span class="val">+22 → +51</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Compliance Flags <span class="val">0 incidents</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Platform MAU <span class="val">1.2K → 4.8K</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Audit Pass <span class="val">93%</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Review Time <span class="neg">-41%</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Portfolio Construction <span class="val">+86% adoption</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Due Diligence <span class="val">18d → 5d</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Recon Errors <span class="val">12% → 1.5%</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Advisor NPS <span class="val">+22 → +51</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Compliance Flags <span class="val">0 incidents</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Platform MAU <span class="val">1.2K → 4.8K</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Audit Pass <span class="val">93%</span></span><span class="ticker-dot"></span>
+<span class="ticker-item">Review Time <span class="neg">-41%</span></span><span class="ticker-dot"></span>
+</div></div>
+
+<!-- CASES -->
+<section id="work">
+<div class="chip">Selected work</div>
+<h2 class="stitle">Four platforms I shipped for <em>financial advisors</em>.</h2>
+<p class="sdesc">Each bridged investment data complexity with advisor simplicity — compliant, auditable, and adopted in production.</p>
+<div class="cases">
+
+<div class="case"><div class="cv"><div class="ctag ct-n">PORTFOLIO</div><svg width="200" height="150" viewBox="0 0 200 150"><rect x="15" y="10" width="170" height="100" rx="6" fill="none" stroke="#4a7fff" stroke-width="0.5" opacity="0.25"/><rect x="25" y="22" width="45" height="32" rx="4" fill="#4a7fff" opacity="0.06" stroke="#4a7fff" stroke-width="0.3"/><text x="47" y="38" font-size="8" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.8">alpha</text><text x="47" y="48" font-size="7" fill="#7a7870" text-anchor="middle" font-family="monospace">0.84</text><rect x="78" y="22" width="45" height="32" rx="4" fill="#34c77b" opacity="0.06" stroke="#34c77b" stroke-width="0.3"/><text x="100" y="38" font-size="8" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.8">sharpe</text><text x="100" y="48" font-size="7" fill="#7a7870" text-anchor="middle" font-family="monospace">1.42</text><rect x="131" y="22" width="45" height="32" rx="4" fill="#d4a853" opacity="0.06" stroke="#d4a853" stroke-width="0.3"/><text x="153" y="38" font-size="8" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.8">beta</text><text x="153" y="48" font-size="7" fill="#7a7870" text-anchor="middle" font-family="monospace">0.91</text><rect x="25" y="64" width="151" height="36" rx="4" fill="#4a7fff" opacity="0.03" stroke="#4a7fff" stroke-width="0.3"/><text x="100" y="82" font-size="8" fill="#7a7870" text-anchor="middle" font-family="monospace">factor models + scenario analysis</text><text x="100" y="93" font-size="7" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.6">stress test: -2σ to +2σ</text><text x="100" y="128" font-size="8" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.7">Morningstar data integrated</text></svg></div><div class="cb"><h3>Portfolio construction & analytics platform</h3><p>Built an end-to-end platform integrating Morningstar data feeds, risk analytics (factor models, stress testing, scenario analysis), and compliant disclosure logic. Designed advisor workflows for proposal generation, portfolio review, and client reporting with CRM and portal integration via SSO.</p><div class="mts"><div class="mt mn"><strong>86%</strong><span>Advisor adoption</span></div><div class="mt mg"><strong>41%</strong><span>Faster review</span></div><div class="mt mgl"><strong>$3.8M</strong><span>Efficiency gains</span></div></div></div></div>
+
+<div class="case"><div class="cv"><div class="ctag ct-g">RETIREMENT</div><svg width="200" height="150" viewBox="0 0 200 150"><rect x="12" y="15" width="52" height="40" rx="4" fill="none" stroke="#d4a853" stroke-width="0.4" opacity="0.3"/><text x="38" y="32" font-size="7" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.7">TDF</text><text x="38" y="44" font-size="6" fill="#7a7870" text-anchor="middle" font-family="monospace">2035/2040/2045</text><rect x="74" y="15" width="52" height="40" rx="4" fill="none" stroke="#34c77b" stroke-width="0.4" opacity="0.3"/><text x="100" y="32" font-size="7" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.7">income</text><text x="100" y="44" font-size="6" fill="#7a7870" text-anchor="middle" font-family="monospace">projection</text><rect x="136" y="15" width="52" height="40" rx="4" fill="none" stroke="#4a7fff" stroke-width="0.4" opacity="0.3"/><text x="162" y="32" font-size="7" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.7">fees</text><text x="162" y="44" font-size="6" fill="#7a7870" text-anchor="middle" font-family="monospace">comparison</text><line x1="100" y1="60" x2="100" y2="75" stroke="#7a7870" stroke-width="0.4"/><rect x="40" y="80" width="120" height="32" rx="4" fill="#34c77b" opacity="0.04" stroke="#34c77b" stroke-width="0.4"/><text x="100" y="97" font-size="8" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.7">suitability + disclosure</text><text x="100" y="106" font-size="6" fill="#7a7870" text-anchor="middle" font-family="monospace">automated generation</text><text x="100" y="132" font-size="8" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.6">SEC/FINRA compliant</text></svg></div><div class="cb"><h3>Retirement planning & due diligence automation</h3><p>Designed compliant retirement planning tools enabling advisors to evaluate target-date funds, income projections, and fee comparisons across the retirement plan ecosystem. Automated suitability checks and disclosure generation. Integrated Morningstar retirement data and share class analytics.</p><div class="mts"><div class="mt mgl"><strong>18d→5d</strong><span>Due diligence cycle</span></div><div class="mt mg"><strong>93%</strong><span>Audit pass rate</span></div><div class="mt mn"><strong>4 types</strong><span>Fund/ETF/SMA/Alt</span></div></div></div></div>
+
+<div class="case"><div class="cv"><div class="ctag ct-gr">DATA</div><svg width="200" height="150" viewBox="0 0 200 150"><rect x="10" y="20" width="72" height="24" rx="3" fill="#4a7fff" opacity="0.05" stroke="#4a7fff" stroke-width="0.3"/><text x="46" y="36" font-size="7" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.7">Morningstar</text><rect x="10" y="50" width="72" height="24" rx="3" fill="#d4a853" opacity="0.05" stroke="#d4a853" stroke-width="0.3"/><text x="46" y="66" font-size="7" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.7">share classes</text><rect x="10" y="80" width="72" height="24" rx="3" fill="#34c77b" opacity="0.05" stroke="#34c77b" stroke-width="0.3"/><text x="46" y="96" font-size="7" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.7">vehicle types</text><text x="102" y="66" font-size="14" fill="#d4a853" opacity="0.4">→</text><rect x="120" y="38" width="68" height="52" rx="5" fill="#4a7fff" opacity="0.03" stroke="#4a7fff" stroke-width="0.4"/><text x="154" y="60" font-size="8" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.6">unified</text><text x="154" y="72" font-size="8" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.6">model</text><text x="100" y="128" font-size="8" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.6">12% → 1.5% recon error</text></svg></div><div class="cb"><h3>Investment data platform — multi-region alignment</h3><p>Built portfolio construction tooling powered by Morningstar feeds, share class data, and vehicle type mappings. Designed data models and calculation logic for performance attribution, risk analytics, and portfolio optimization across mutual funds, ETFs, SMAs, and model portfolios across 3 regions.</p><div class="mts"><div class="mt mg"><strong>12→1.5%</strong><span>Recon errors</span></div><div class="mt mn"><strong>$7.8M</strong><span>Business impact</span></div><div class="mt mgl"><strong>3</strong><span>Regions aligned</span></div></div></div></div>
+
+<div class="case"><div class="cv"><div class="ctag ct-r">COMPLIANCE</div><svg width="200" height="150" viewBox="0 0 200 150"><rect x="20" y="15" width="160" height="32" rx="5" fill="none" stroke="#e05555" stroke-width="0.4" opacity="0.25"/><text x="100" y="35" font-size="9" fill="#e05555" text-anchor="middle" font-family="monospace" opacity="0.7">SEC / FINRA regulatory layer</text><line x1="100" y1="52" x2="100" y2="65" stroke="#7a7870" stroke-width="0.4"/><rect x="20" y="70" width="72" height="28" rx="4" fill="#34c77b" opacity="0.04" stroke="#34c77b" stroke-width="0.4"/><text x="56" y="88" font-size="7" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.7">disclosures</text><rect x="102" y="70" width="78" height="28" rx="4" fill="#4a7fff" opacity="0.04" stroke="#4a7fff" stroke-width="0.4"/><text x="141" y="88" font-size="7" fill="#4a7fff" text-anchor="middle" font-family="monospace" opacity="0.7">suitability checks</text><text x="100" y="120" font-size="9" fill="#34c77b" text-anchor="middle" font-family="monospace" opacity="0.6">audit-ready · 3 jurisdictions</text><text x="100" y="138" font-size="8" fill="#d4a853" text-anchor="middle" font-family="monospace" opacity="0.5">0 compliance flags</text></svg></div><div class="cb"><h3>Compliance integration — audit-ready across jurisdictions</h3><p>Partnered with Compliance and Legal across US, EU, and APAC. Identified areas of risk and disclosure requirements. Integrated suitability checks and regulatory monitoring into advisor workflows. Maintained audit-ready documentation for all product decisions.</p><div class="mts"><div class="mt mn"><strong>3</strong><span>Jurisdictions</span></div><div class="mt mg"><strong>93%</strong><span>Audit pass</span></div><div class="mt mr"><strong>0</strong><span>Compliance flags</span></div></div></div></div>
+
+</div></section>
+
+<!-- EXPERIENCE -->
+<div class="exp-bg" id="experience"><div>
+<div class="chip">Experience</div>
+<h2 class="stitle">Where I built <em>advisor trust</em>.</h2>
+<p class="sdesc">Progressive PM ownership across regulatory intelligence, financial data platforms, and advisor-facing analytics.</p>
+<div class="tl">
+<div class="tli on"><div class="tlh"><div><span class="tlt">Product Manager – Regulatory Intelligence & Compliance Analytics</span> <span class="tlc">@ FINRA</span></div><span class="tld">May 2025 – Dec 2025</span></div><ul class="tlu">
+<li>Owned vision and roadmap for regulatory platform serving 200+ compliance analysts and examiners</li>
+<li>Integrated Morningstar data, risk metrics, factor exposures into compliance analytics dashboards</li>
+<li>Reduced examination cycle 3.2 weeks → 4 days; improved platform adoption 62%→89%</li>
+<li>Partnered with Compliance/Legal on SEC/FINRA rules — disclosures, suitability, audit readiness</li>
+<li>Defined OKRs, established reporting rhythms, aligned 6 cross-functional teams</li>
+</ul></div>
+<div class="tli on"><div class="tlh"><div><span class="tlt">Senior Product Manager – Financial Data Platform & Advisor Tools</span> <span class="tlc">@ Cognizant</span></div><span class="tld">Jul 2021 – Aug 2024</span></div><ul class="tlu">
+<li>Owned strategy for platform serving 12 Fortune 500 FS clients — asset managers, wealth managers, retirement providers</li>
+<li>Built portfolio construction tooling with Morningstar, share class data, vehicle mappings — recon errors 12%→1.5%</li>
+<li>Evolved advisor workflows (proposal, review, reporting) with CRM/SSO integration — NPS +22→+51</li>
+<li>Partnered with Compliance/Legal across 3 jurisdictions — suitability, disclosures, audit-ready docs</li>
+<li>Matrixed org: Tech, Data, Marketing, Sales, Compliance, Legal, Risk, Brand — 12 QBRs delivered</li>
+<li>Competitive product messaging; grew adoption 51%→86%; drove $7.8M impact</li>
+</ul></div>
+<div class="tli"><div class="tlh"><div><span class="tlt">Associate Product Manager – Financial Analytics & Data Operations</span> <span class="tlc">@ Cognizant</span></div><span class="tld">Jun 2020 – Jul 2021</span></div><ul class="tlu">
+<li>Built Tableau/Power BI dashboards for investment performance data (returns, risk, factor models)</li>
+<li>Shadowed 20+ advisors — documented friction in portfolio construction and retirement planning</li>
+<li>Fixed 3 data display issues causing 61% of tickets in one sprint; onboarding 54%→78%</li>
+</ul></div>
+</div></div></div>
+
+<!-- APPROACH -->
+<section id="approach">
+<div class="chip">How I work</div>
+<h2 class="stitle">Three principles for <em>financial product management</em>.</h2>
+<div class="ag">
+<div class="ac" data-n="01"><h3>Compliance is a feature</h3><p>I don't treat Compliance/Legal as a gate at the end. I partner with them from discovery — identifying disclosure requirements, suitability logic, and audit needs before the first PRD. 93% audit pass rates don't happen by accident.</p></div>
+<div class="ac" data-n="02"><h3>Data models before dashboards</h3><p>Advisors don't trust tools that show different numbers than Morningstar. I obsess over foundational data alignment — share classes, vehicle types, calculation logic — before building a single view. That's how recon errors go from 12% to 1.5%.</p></div>
+<div class="ac" data-n="03"><h3>Time-to-value is the metric</h3><p>An advisor won't use a tool slower than their spreadsheet. Every workflow I ship — proposal, review, due diligence — is measured by minutes saved versus the manual process. If it's not faster, it doesn't ship.</p></div>
+</div></section>
+
+<!-- TECH -->
+<section id="stack">
+<div class="chip">Domain expertise</div>
+<h2 class="stitle">Investment data to <em>advisor workflow</em>.</h2>
+<div class="tg">
+<div class="tp"><div class="tn">Portfolio Construction</div><div class="tc">domain</div></div>
+<div class="tp"><div class="tn">Morningstar Data</div><div class="tc">domain</div></div>
+<div class="tp"><div class="tn">Factor Models</div><div class="tc">analytics</div></div>
+<div class="tp"><div class="tn">Stress Testing</div><div class="tc">analytics</div></div>
+<div class="tp"><div class="tn">Mutual Funds</div><div class="tc">products</div></div>
+<div class="tp"><div class="tn">ETFs / SMAs</div><div class="tc">products</div></div>
+<div class="tp"><div class="tn">Alternatives</div><div class="tc">products</div></div>
+<div class="tp"><div class="tn">Retirement Plans</div><div class="tc">products</div></div>
+<div class="tp"><div class="tn">SEC / FINRA</div><div class="tc">compliance</div></div>
+<div class="tp"><div class="tn">Suitability</div><div class="tc">compliance</div></div>
+<div class="tp"><div class="tn">Disclosures</div><div class="tc">compliance</div></div>
+<div class="tp"><div class="tn">Audit Readiness</div><div class="tc">compliance</div></div>
+<div class="tp"><div class="tn">SQL / Python</div><div class="tc">analytics</div></div>
+<div class="tp"><div class="tn">Tableau</div><div class="tc">analytics</div></div>
+<div class="tp"><div class="tn">OKRs</div><div class="tc">product</div></div>
+<div class="tp"><div class="tn">Agile / Matrixed</div><div class="tc">product</div></div>
+</div></section>
+
+<!-- EDUCATION -->
+<section id="education">
+<div class="chip">Education & credentials</div>
+<h2 class="stitle">The <em>foundation</em>.</h2>
+<div class="eg">
+<div class="ec"><div class="es">University of Denver</div><div class="ed">M.S. Information Technology</div><div class="em"><span class="gp">3.97 / 4.0</span><span class="dt">2024 – 2026</span></div></div>
+<div class="ec"><div class="es">Anna University</div><div class="ed">B.E. Computer Science</div><div class="em"><span class="gp">3.8 / 4.0</span><span class="dt">2017 – 2021</span></div></div>
+</div>
+<div class="certs">
+<span class="cert primary">CFA Level 1 (In Progress)</span>
+<span class="cert">Salesforce AI Associate</span>
+<span class="cert">AWS Cloud Practitioner</span>
+<span class="cert">Salesforce Admin</span>
+<span class="cert">GitLab CI/CD</span>
+</div></section>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+<h2>Let's build <em>advisor tools</em><br>that turn data into decisions.</h2>
+<p style="color:var(--text-muted);margin-top:6px;font-weight:300;position:relative">Ready to relocate to New York.</p>
+<div class="cls">
+<a href="mailto:kiruthikavenkat2704@gmail.com">kiruthikavenkat2704@gmail.com</a>
+<a href="tel:+17208135590">(720) 813-5590</a>
+</div></div>
+
+<footer>&copy; 2026 Kiruthika Venkatesan</footer>
+</body></html>
